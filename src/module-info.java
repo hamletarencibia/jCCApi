@@ -19,6 +19,7 @@ module jcc.api{
 	exports jcc.api.javafx.controls;
 	exports jcc.api.javafx.controls.menu;
 	exports jcc.api.javafx.controls.menu.navigationdrawer;
+	exports jcc.api.javafx.css;
 	exports jcc.api.objects;
 	exports jcc.api.utils;
 	exports jcc.api.validation.bean.constraints;
