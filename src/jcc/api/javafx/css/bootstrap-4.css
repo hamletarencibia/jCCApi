@@ -1,0 +1,190 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+/*Colors*/
+*{
+	-fx-bs-blue: #007bff;
+	-fx-bs-indigo: #6610f2;
+	-fx-bs-purple: #6f42c1;
+	-fx-bs-pink: #e83e8c;
+	-fx-bs-red: #dc3445;
+	-fx-bs-orange: #fd7e14;
+	-fx-bs-yellow: #ffc107;
+	-fx-bs-green: #28a745;
+	-fx-bs-teal: #20c997;
+	-fx-bs-cyan: #17a2b8;
+	-fx-bs-white: #ffffff;
+	-fx-bs-gray: #6c757d;
+	-fx-bs-gray-dark: #343a40;
+	-fx-bs-primary: #007bff;
+	-fx-bs-secondary: #6c757d;
+	-fx-bs-success: #28a745;
+	-fx-bs-info: #17a2b8;
+	-fx-bs-warning: #ffc107;
+	-fx-bs-danger: #dc3445;
+	-fx-bs-light: #f8f9fa;
+	-fx-bs-dark: #343a40;
+}
+/**************************************************************************************
+ * ********************************* Buttons ******************************************
+ **************************************************************************************/
+.btn-primary{
+	-fx-background-color: -fx-bs-primary;
+	-fx-text-fill: #ffffff;
+	-fx-border-color: -fx-bs-primary;
+}
+.btn-primary:hover{
+	-fx-background-color: #0069d9;
+	-fx-border-color: #0062cc;
+}
+.btn-secondary{
+	-fx-background-color: -fx-bs-secondary;
+	-fx-text-fill: #ffffff;
+	-fx-border-color: -fx-bs-secondary;
+}
+.btn-secondary:hover{
+	-fx-background-color: #5a6268;
+	-fx-border-color: #545b62;
+}
+.btn-success{
+	-fx-background-color: -fx-bs-success;
+	-fx-text-fill: #ffffff;
+	-fx-border-color: -fx-bs-success;
+}
+.btn-success:hover{
+	-fx-background-color: #218838;
+	-fx-border-color: #1e7e34;
+}
+.btn-danger{
+	-fx-background-color: -fx-bs-danger;
+	-fx-text-fill: #ffffff;
+	-fx-border-color: -fx-bs-danger;
+}
+.btn-danger:hover{
+	-fx-background-color: #c82333;
+	-fx-border-color: #bd2130;
+}
+.btn-warning {
+	-fx-background-color: -fx-bs-warning;
+	-fx-text-fill: #212529;
+	-fx-border-color: -fx-bs-warning;
+}
+.btn-warning:hover {
+	-fx-background-color: #e0a800;
+	-fx-border-color: #d39e00;
+}
+.btn-info {
+	-fx-background-color: -fx-bs-info;
+	-fx-text-fill: #ffffff;
+	-fx-border-color: -fx-bs-info;
+}
+.btn-info:hover {
+	-fx-background-color: #138496;
+	-fx-border-color: #117a8b;
+}
+.btn-light {
+	-fx-background-color: -fx-bs-light;
+	-fx-text-fill: #212529;
+	-fx-border-color: -fx-bs-light;
+}
+.btn-light:hover {
+	-fx-background-color: #e2e6ea;
+	-fx-border-color: #dae0e5;
+}
+.btn-dark {
+	-fx-background-color: -fx-bs-dark;
+	-fx-text-fill: #ffffff;
+	-fx-border-color: -fx-bs-dark;
+}
+.btn-dark:hover {
+	-fx-background-color: #23272b;
+	-fx-border-color: #1d2124;
+}
+/**************************************************************************************
+ * ********************************* Alerts *******************************************
+ **************************************************************************************/
+ .alert{
+ 	-fx-background-radius: 5;
+	-fx-border-radius: 5;
+ }
+ .alert-primary{
+ 	-fx-background-color: #cce5ff !important;
+	-fx-border-color: #b8daff;
+ }
+ .alert-primary .label{
+	-fx-text-fill: #004085;
+}
+.alert-secondary{
+ 	-fx-background-color: #e2e3e5 !important;
+	-fx-border-color: #d6d8db;
+ }
+ .alert-secondary .label{
+	-fx-text-fill: #383d41;
+}
+.alert-success{
+	-fx-background-color: #d4edda !important;
+	-fx-border-color: #c3e6cb;
+}
+.alert-success .label{
+	-fx-text-fill: #155724;
+}
+.alert-danger{
+	-fx-background-color: #f8d7da !important;
+	-fx-border-color: #f5c6cb;
+}
+.alert-danger .label{
+	-fx-text-fill: #721c24;
+}
+.alert-warning{
+	-fx-background-color: #fff3cd !important;
+	-fx-border-color: #ffeeba;
+}
+.alert-warning .label{
+	-fx-text-fill: #856404;
+}
+.alert-info{
+	-fx-background-color: #d1ecf1 !important;
+	-fx-border-color: #bee5eb;
+}
+.alert-info .label{
+	-fx-text-fill: #ec5460;
+}
+.alert-light{
+	-fx-background-color: #fefefe !important;
+	-fx-border-color: #fefefd;
+}
+.alert-light .label{
+	-fx-text-fill: #818182;
+}
+.alert-dark{
+	-fx-background-color: #d6d8d9 !important;
+	-fx-border-color: #c6c8ca;
+}
+.alert-dark .label{
+	-fx-text-fill: #1b1e21;
+}
+/**************************************************************************************
+ * ********************************* Texts ********************************************
+ **************************************************************************************/
+.text-primary{
+	-fx-text-fill: -fx-bs-primary;
+}
+.text-secondary{
+	-fx-text-fill: -fx-bs-secondary;
+}
+.text-success{
+	-fx-text-fill: -fx-bs-success;
+}
+.text-danger{
+	-fx-text-fill: -fx-bs-danger;
+}
+.text-warning{
+	-fx-text-fill: -fx-bs-warning;
+}
+.text-info{
+	-fx-text-fill: -fx-bs-info;
+}
+.text-light{
+	-fx-text-fill: -fx-bs-light;
+}
+.text-dark{
+	-fx-text-fill: -fx-bs-dark;
+}
