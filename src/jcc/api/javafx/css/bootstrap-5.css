@@ -1,0 +1,201 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+/*Colors*/
+*{
+	-fx-bs-blue: #0d6efd;
+	-fx-bs-indigo: #6610f2;
+	-fx-bs-purple: #6f42c1;
+	-fx-bs-pink: #d63384;
+	-fx-bs-red: #dc3545;
+	-fx-bs-orange: #fd7e14;
+	-fx-bs-yellow: #ffc107;
+	-fx-bs-green: #198754;
+	-fx-bs-teal: #20c997;
+	-fx-bs-cyan: #0dcaf0;
+	-fx-bs-white: #ffffff;
+	-fx-bs-gray: #6c757d;
+	-fx-bs-gray-dark: #343a40;
+	-fx-bs-primary: #0d6efd;
+	-fx-bs-secondary: #6c757d;
+	-fx-bs-success: #198754;
+	-fx-bs-info: #0dcaf0;
+	-fx-bs-warning: #ffc107;
+	-fx-bs-danger: #dc3545;
+	-fx-bs-light: #f8f9fa;
+	-fx-bs-dark: #212529;
+}
+/**************************************************************************************
+ * ********************************* Buttons ******************************************
+ **************************************************************************************/
+.btn-primary{
+	-fx-background-color: -fx-bs-primary;
+	-fx-text-fill: #ffffff;
+}
+.btn-primary:hover{
+	-fx-background-color: #0b5ed7;
+}
+.btn-secondary{
+	-fx-background-color: -fx-bs-secondary;
+	-fx-text-fill: #ffffff;
+}
+.btn-secondary:hover{
+	-fx-background-color: #5c636a;
+}
+.btn-success{
+	-fx-background-color: -fx-bs-success;
+	-fx-text-fill: #ffffff;
+}
+.btn-success:hover{
+	-fx-background-color: #157347;
+}
+.btn-danger{
+	-fx-background-color: -fx-bs-danger;
+	-fx-text-fill: #ffffff;
+}
+.btn-danger:hover{
+	-fx-background-color: #bb2d3b;
+}
+.btn-warning {
+	-fx-background-color: -fx-bs-warning;
+	-fx-text-fill: #000000;
+}
+.btn-warning:hover {
+	-fx-background-color: #ffca2c;
+}
+.btn-info {
+	-fx-background-color: -fx-bs-info;
+	-fx-text-fill: #000000;
+}
+.btn-info:hover {
+	-fx-background-color: #31d2f2;
+}
+.btn-light {
+	-fx-background-color: -fx-bs-light;
+	-fx-text-fill: #000000;
+}
+.btn-light:hover {
+	-fx-background-color: #f9fafb;
+}
+.btn-dark {
+	-fx-background-color: -fx-bs-dark;
+	-fx-text-fill: #ffffff;
+}
+.btn-dark:hover {
+	-fx-background-color: #1c1f23;
+}
+/**************************************************************************************
+ * ********************************* Alerts *******************************************
+ **************************************************************************************/
+ .alert{
+ 	-fx-background-radius: 5;
+	-fx-border-radius: 5;
+ }
+ .alert-primary{
+ 	-fx-background-color: #cfe2ff !important;
+	-fx-border-color: #b6d4fe;
+ }
+ .alert-primary .label{
+	-fx-text-fill: #084298;
+}
+.alert-secondary{
+ 	-fx-background-color: #e2e3e5 !important;
+	-fx-border-color: #d3d6d8;
+ }
+ .alert-secondary .label{
+	-fx-text-fill: #41464b;
+}
+.alert-success{
+	-fx-background-color: #d1e7dd !important;
+	-fx-border-color: #badbcc;
+}
+.alert-success .label{
+	-fx-text-fill: #0f5132;
+}
+.alert-danger{
+	-fx-background-color: #f8d7da !important;
+	-fx-border-color: #f5c2c7;
+}
+.alert-danger .label{
+	-fx-text-fill: #842029;
+}
+.alert-warning{
+	-fx-background-color: #fff3cd !important;
+	-fx-border-color: #ffecb5;
+}
+.alert-warning .label{
+	-fx-text-fill: #664d03;
+}
+.alert-info{
+	-fx-background-color: #cff4fc !important;
+	-fx-border-color: #b6effb;
+}
+.alert-info .label{
+	-fx-text-fill: #055160;
+}
+.alert-light{
+	-fx-background-color: #fefefe !important;
+	-fx-border-color: #fdfdfe;
+}
+.alert-light .label{
+	-fx-text-fill: #636464;
+}
+.alert-dark{
+	-fx-background-color: #d3d3d4 !important;
+	-fx-border-color: #bcbebf;
+}
+.alert-dark .label{
+	-fx-text-fill: #141619;
+}
+/**************************************************************************************
+ * ********************************* Texts ********************************************
+ **************************************************************************************/
+.text-primary{
+	-fx-text-fill: -fx-bs-primary;
+}
+.text-secondary{
+	-fx-text-fill: -fx-bs-secondary;
+}
+.text-success{
+	-fx-text-fill: -fx-bs-success;
+}
+.text-danger{
+	-fx-text-fill: -fx-bs-danger;
+}
+.text-warning{
+	-fx-text-fill: -fx-bs-warning;
+}
+.text-info{
+	-fx-text-fill: -fx-bs-info;
+}
+.text-light{
+	-fx-text-fill: -fx-bs-light;
+}
+.text-dark{
+	-fx-text-fill: -fx-bs-dark;
+}
+/**************************************************************************************
+ * ********************************* Backgrounds **************************************
+ **************************************************************************************/
+ .bg-primary{
+	-fx-background-color: -fx-bs-primary;
+}
+.bg-secondary{
+	-fx-background-color: -fx-bs-secondary;
+}
+.bg-success{
+	-fx-background-color: -fx-bs-success;
+}
+.bg-danger{
+	-fx-background-color: -fx-bs-danger;
+}
+.bg-warning{
+	-fx-background-color: -fx-bs-warning;
+}
+.bg-info{
+	-fx-background-color: -fx-bs-info;
+}
+.bg-light{
+	-fx-background-color: -fx-bs-light;
+}
+.bg-dark{
+	-fx-background-color: -fx-bs-dark;
+}
