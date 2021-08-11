@@ -29,74 +29,58 @@
 .btn-primary{
 	-fx-background-color: -fx-bs-primary;
 	-fx-text-fill: #ffffff;
-	-fx-border-color: -fx-bs-primary;
 }
 .btn-primary:hover{
 	-fx-background-color: #0069d9;
-	-fx-border-color: #0062cc;
 }
 .btn-secondary{
 	-fx-background-color: -fx-bs-secondary;
 	-fx-text-fill: #ffffff;
-	-fx-border-color: -fx-bs-secondary;
 }
 .btn-secondary:hover{
 	-fx-background-color: #5a6268;
-	-fx-border-color: #545b62;
 }
 .btn-success{
 	-fx-background-color: -fx-bs-success;
 	-fx-text-fill: #ffffff;
-	-fx-border-color: -fx-bs-success;
 }
 .btn-success:hover{
 	-fx-background-color: #218838;
-	-fx-border-color: #1e7e34;
 }
 .btn-danger{
 	-fx-background-color: -fx-bs-danger;
 	-fx-text-fill: #ffffff;
-	-fx-border-color: -fx-bs-danger;
 }
 .btn-danger:hover{
 	-fx-background-color: #c82333;
-	-fx-border-color: #bd2130;
 }
 .btn-warning {
 	-fx-background-color: -fx-bs-warning;
 	-fx-text-fill: #212529;
-	-fx-border-color: -fx-bs-warning;
 }
 .btn-warning:hover {
 	-fx-background-color: #e0a800;
-	-fx-border-color: #d39e00;
 }
 .btn-info {
 	-fx-background-color: -fx-bs-info;
 	-fx-text-fill: #ffffff;
-	-fx-border-color: -fx-bs-info;
 }
 .btn-info:hover {
 	-fx-background-color: #138496;
-	-fx-border-color: #117a8b;
 }
 .btn-light {
 	-fx-background-color: -fx-bs-light;
 	-fx-text-fill: #212529;
-	-fx-border-color: -fx-bs-light;
 }
 .btn-light:hover {
 	-fx-background-color: #e2e6ea;
-	-fx-border-color: #dae0e5;
 }
 .btn-dark {
 	-fx-background-color: -fx-bs-dark;
 	-fx-text-fill: #ffffff;
-	-fx-border-color: -fx-bs-dark;
 }
 .btn-dark:hover {
 	-fx-background-color: #23272b;
-	-fx-border-color: #1d2124;
 }
 /**************************************************************************************
  * ********************************* Alerts *******************************************
