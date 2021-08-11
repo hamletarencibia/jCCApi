@@ -13,25 +13,6 @@ import java.util.List;
  */
 public class FileUtils {
 	/**
-	 * Copies a file to the given destination
-	 * @param fileToCopy file to be copied
-	 * @param destinationPath destination of the copied file
-	 * @throws IOException if an I/O error occurs
-	 */
-	@Deprecated()
-	public static void copy(File fileToCopy,File destinationPath) throws IOException{
-		new File(destinationPath.getParent()).mkdirs();
-		FileInputStream originalFile=new FileInputStream(fileToCopy);
-		FileOutputStream destinationFile=new FileOutputStream(destinationPath);
-		int counter=originalFile.available();
-		for(int i=0;i<counter;i++){
-			destinationFile.write(originalFile.read());
-		}
-		originalFile.close();
-		destinationFile.close();
-	}
-	
-	/**
 	 * Returns the extension of the given file
 	 * @param file file to get extension
 	 * @return a {@link String} object with the extension name
@@ -44,7 +25,11 @@ public class FileUtils {
 		}
 		return extension;
 	}
-	
+	/**
+	 * Recursively fetches all files in a given directory
+	 * @param dir a File specifying the directory
+	 * @return a List<File> with all the files contained in the given directory
+	 */
 	public static List<File> fetchAllFiles(File dir){
 		List<File> files = new LinkedList<File>();
 		if(dir.isDirectory()) {
