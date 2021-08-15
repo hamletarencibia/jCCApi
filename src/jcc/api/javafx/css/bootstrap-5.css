@@ -199,3 +199,42 @@
 .bg-dark{
 	-fx-background-color: -fx-bs-dark;
 }
+/**************************************************************************************
+ * ********************************* Badges *******************************************
+ **************************************************************************************/
+ .badge-primary, .badge-secondary, .badge-success, .badge-danger, .badge-warning, .badge-info, .badge-light, .badge-dark{
+ 	-fx-background-radius:5;
+	-fx-padding: 0 3 0 3;
+ }
+ .badge-primary{
+ 	-fx-background-color: -fx-bs-primary;
+ 	-fx-text-fill: #ffffff;
+ }
+ .badge-secondary{
+	-fx-background-color: -fx-bs-secondary;
+	-fx-text-fill: #ffffff;
+}
+.badge-success{
+	-fx-background-color: -fx-bs-success;
+	-fx-text-fill: #ffffff;
+}
+.badge-danger{
+	-fx-background-color: -fx-bs-danger;
+	-fx-text-fill: #ffffff;
+}
+.badge-warning{
+	-fx-background-color: -fx-bs-warning;
+	-fx-text-fill: #000000;
+}
+.badge-info{
+	-fx-background-color: -fx-bs-info;
+	-fx-text-fill: #000000;
+}
+.badge-light{
+	-fx-background-color: -fx-bs-light;
+	-fx-text-fill: #000000;
+}
+.badge-dark{
+	-fx-background-color: -fx-bs-dark;
+	-fx-text-fill: #ffffff;
+}
