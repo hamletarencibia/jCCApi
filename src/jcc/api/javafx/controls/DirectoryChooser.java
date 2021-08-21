@@ -4,18 +4,17 @@ import java.io.File;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import jcc.api.javafx.controls.BSInputGroup.Position;
 
 public class DirectoryChooser extends BorderPane{
 	//Simple selection
-	private TextField txtFldSingle;
-	private Button btnAddSingle;
+	private BSInputGroup inputGroupSingle;
 	
 	private String title;
 	private File directory;
@@ -25,8 +24,8 @@ public class DirectoryChooser extends BorderPane{
 		directoryChooser = new javafx.stage.DirectoryChooser();
 		directoryChooser.setTitle(getTitle());
 		this.setTop(null);
-		this.setCenter(getTxtFldSingle());
-		this.setRight(getBtnAddSingle());
+		this.setCenter(getInputGroupSingle());
+		this.setRight(null);
 	}
 	public DirectoryChooser(File directory) {
 		this();
@@ -34,14 +33,10 @@ public class DirectoryChooser extends BorderPane{
 	}
 	
 	//Single selection mode
-	//Initialize the TextField containing the route for the selected
-	private TextField getTxtFldSingle() {
-		if(txtFldSingle == null) {
-			txtFldSingle = new TextField();
-			txtFldSingle.setId("txtFldSingle");
-			
-			//Sets the drag and drop event
-			txtFldSingle.setOnDragOver(new EventHandler<DragEvent>() {
+	private BSInputGroup getInputGroupSingle() {
+		if(inputGroupSingle == null) {
+			inputGroupSingle = new BSInputGroup(Position.RIGHT, new Label("..."));
+			inputGroupSingle.getTextField().setOnDragOver(new EventHandler<DragEvent>() {
 				@Override
 				public void handle(DragEvent event) {
 					if(event.getDragboard().getFiles().get(0).isDirectory())
@@ -49,39 +44,29 @@ public class DirectoryChooser extends BorderPane{
 	                event.consume();
 				}
 			});
-			txtFldSingle.setOnDragDropped(new EventHandler<DragEvent>() {
+			inputGroupSingle.getTextField().setOnDragDropped(new EventHandler<DragEvent>() {
 				@Override
 				public void handle(DragEvent arg0) {
 					Dragboard db = arg0.getDragboard();
 					if(db.hasFiles()) {
-						getTxtFldSingle().setText(db.getFiles().get(0).getAbsolutePath());
+						inputGroupSingle.getTextField().setText(db.getFiles().get(0).getAbsolutePath());
 						setDirectory(db.getFiles().get(0));
 					}
 				}
 			});
-		}
-		return txtFldSingle;
-	}
-	//Initialize the Button to select a file
-	private Button getBtnAddSingle() {
-		if(btnAddSingle == null) {
-			btnAddSingle = new Button("...");
-			btnAddSingle.setId("btnAddSingle");
-			
-			//Sets the action event
-			btnAddSingle.setOnAction(new EventHandler<ActionEvent>() {
+			inputGroupSingle.getButton().setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent arg0) {
 					//Creates and shows the FileChooser
 					File dir = directoryChooser.showDialog(new Stage());
 					if(dir != null) {
 						setDirectory(dir);
-						getTxtFldSingle().setText(getDirectory().getAbsolutePath());
+						inputGroupSingle.getTextField().setText(getDirectory().getAbsolutePath());
 					}
 				}
 			});
 		}
-		return btnAddSingle;
+		return inputGroupSingle;
 	}
 
 	public String getTitle() {
@@ -98,7 +83,7 @@ public class DirectoryChooser extends BorderPane{
 	public void setDirectory(File directory) {
 		this.directory = directory;
 		if(directory != null)
-		getTxtFldSingle().setText(directory.getAbsolutePath());
+			inputGroupSingle.getTextField().setText(directory.getAbsolutePath());
 	}
 	
 }

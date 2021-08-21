@@ -15,7 +15,6 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
@@ -31,6 +30,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import jcc.api.javafx.controls.BSInputGroup.Position;
 import jcc.api.utils.FileUtils;
 
 public class FileChooser extends BorderPane{
@@ -39,8 +39,7 @@ public class FileChooser extends BorderPane{
 	public static final ExtensionFilter VIDEOS = new ExtensionFilter("Videos", "*.avi","*.flv","*.mp4","*.mpg","*.mpeg","*.mkv","*.rmvb");
 	public static final ExtensionFilter ALL = new ExtensionFilter("All", "*.*");
 	//Simple selection
-	private TextField txtFldSingle;
-	private Button btnAddSingle;
+	private BSInputGroup inputGroupSingle;
 	
 	//Multiple selection
 	private HBox buttonPane;
@@ -63,17 +62,13 @@ public class FileChooser extends BorderPane{
 	}
 	
 	//Single selection mode
-	//Initialize the TextField containing the route for the selected
-	private TextField getTxtFldSingle() {
-		if(txtFldSingle == null) {
-			txtFldSingle = new TextField();
-			txtFldSingle.setId("txtFldSingle");
-			
-			//Sets the drag and drop event
-			txtFldSingle.setOnDragOver(new EventHandler<DragEvent>() {
+	private BSInputGroup getInputGroupSingle() {
+		if(inputGroupSingle == null) {
+			inputGroupSingle = new BSInputGroup(Position.RIGHT, new Label("..."));
+			inputGroupSingle.getTextField().setOnDragOver(new EventHandler<DragEvent>() {
 				@Override
 				public void handle(DragEvent event) {
-					if (event.getGestureSource() != getTxtFldSingle() && event.getDragboard().hasFiles()) {
+					if (event.getGestureSource() != inputGroupSingle.getTextField() && event.getDragboard().hasFiles()) {
 						if(fileChooser.getExtensionFilters().size() > 0)
 							loop:for(ExtensionFilter extFilter : fileChooser.getExtensionFilters()) {
 								for(String extension : extFilter.getExtensions()) {
@@ -89,41 +84,31 @@ public class FileChooser extends BorderPane{
 	                event.consume();
 				}
 			});
-			txtFldSingle.setOnDragDropped(new EventHandler<DragEvent>() {
+			inputGroupSingle.getTextField().setOnDragDropped(new EventHandler<DragEvent>() {
 				@Override
 				public void handle(DragEvent arg0) {
 					Dragboard db = arg0.getDragboard();
 					if(db.hasFiles()) {
-						getTxtFldSingle().setText(db.getFiles().get(0).getAbsolutePath());
+						inputGroupSingle.getTextField().setText(db.getFiles().get(0).getAbsolutePath());
 						files = new LinkedList<File>();
 						files.add(db.getFiles().get(0));
 					}
 				}
 			});
-		}
-		return txtFldSingle;
-	}
-	//Initialize the Button to select a file
-	private Button getBtnAddSingle() {
-		if(btnAddSingle == null) {
-			btnAddSingle = new Button("...");
-			btnAddSingle.setId("btnAddSingle");
-			
-			//Sets the action event
-			btnAddSingle.setOnAction(new EventHandler<ActionEvent>() {
+			inputGroupSingle.getButton().setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent arg0) {
 					//Creates and shows the FileChooser
 					File tempFile = fileChooser.showOpenDialog(new Stage());
 					if(tempFile != null) {
-						getTxtFldSingle().setText(tempFile.getAbsolutePath());
+						inputGroupSingle.getTextField().setText(tempFile.getAbsolutePath());
 						files.clear();
 						files.add(tempFile);
 					}
 				}
 			});
 		}
-		return btnAddSingle;
+		return inputGroupSingle;
 	}
 	
 	//Multiple selection mode
@@ -220,8 +205,8 @@ public class FileChooser extends BorderPane{
 		}
 		else {
 			this.setTop(null);
-			this.setCenter(getTxtFldSingle());
-			this.setRight(getBtnAddSingle());
+			this.setCenter(getInputGroupSingle());
+			this.setRight(null);
 		}
 	}
 
