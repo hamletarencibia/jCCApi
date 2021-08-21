@@ -1,0 +1,27 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.bs-input-group-left-control{
+	-fx-background-radius: 3 0 0 3;
+	-fx-border-radius: 3 0 0 3;
+}
+.bs-input-group-right-control{
+	-fx-background-radius: 0 3 3 0;
+	-fx-border-radius: 0 3 3 0;
+}
+.bs-input-group-left-control:focused{
+	-fx-background-radius: 3 0 0 3;
+	-fx-border-radius: 3 0 0 3;
+}
+.bs-input-group-right-control:focused{
+	-fx-background-radius: 0 3 3 0;
+	-fx-border-radius: 0 3 3 0;
+}
+.button.bg-primary,
+.button.bg-secondary,
+.button.bg-success,
+.button.bg-danger,
+.button.bg-warning,
+.button.bg-info,
+.button.bg-light,
+.button.bg-dark{
+	-fx-background-insets: 0,0,0,0,0;
+}
