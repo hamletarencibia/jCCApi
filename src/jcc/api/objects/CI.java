@@ -1,8 +1,8 @@
 package jcc.api.objects;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Calendar;
-
-import jcc.api.utils.DateUtils;
 
 /**<p>This class represent the identity number in Cuba. All cuban identity numbers should be implemented as an instance of this class. 
  * The class have many methods to work with the cuban identity number such as getSex() which returns the sex corresponding to the CI number or getAge(), 
@@ -16,17 +16,6 @@ import jcc.api.utils.DateUtils;
  * @author Hamlet Arencibia Casanova*/
 public class CI {
 	private String value;
-	private char [] ciArray;
-	/**Field number used in method getBirthDate for separate the numbers with a "/" in the birth date returned.*/
-	public static final int SLASH_SEPARATOR=0;
-	/**Field number used in method getBirthDate for separate the numbers with a "," in the birth date returned.*/
-	public static final int COMMA_SEPARATOR=1;
-	/**Field number used in method getBirthDate for separate the numbers with a "-" in the birth date returned.*/
-	public static final int MINUS_SEPARATOR=2;
-	/**Field number used in method getBirthDate for separate the numbers with a " " in the birth date returned.*/
-	public static final int SPACE_SEPARATOR=3;
-	/**Field number used in method getBirthDate for separate the numbers with a "." in the birth date returned.*/
-	public static final int DOT_SEPARATOR=4;
 	
 	/**Construct a CI with the specified String.
 	 * @param value The String to be set for the CI number.
@@ -35,7 +24,6 @@ public class CI {
 	 * @throws InvalidCharactersException Throws an exception if the value doesn't have numbers only.*/
 	public CI(String value) throws InvalidCharactersException, InvalidDateException, WrongLengthException {
 		this.value=value;
-		this.ciArray=value.toCharArray();
 		isValid();
 	}
 	/**Returns the CI number.
@@ -45,56 +33,26 @@ public class CI {
 	}
 	/**Set the value of the CI with the specified String.
 	 * @param value The String to be set for the CI number.*/
-	public void setValue(String value){
+	public void setValue(String value) throws InvalidCharactersException, InvalidDateException, WrongLengthException {
 		this.value=value;
-		this.ciArray=value.toCharArray();
 	}
 	/**Returns a {@link Calendar} object with the birth date corresponding to the CI.
 	 * @return Returns a {@link Calendar} whit the birth date corresponding to the CI number.*/
-	public Calendar getBirthDate(){
-		int monthDigit1=ciArray[2]-48;
-		int monthDigit2=ciArray[3]-48;
-		if(monthDigit1==1&&monthDigit2==0) {
-			monthDigit1=0;
-			monthDigit2=9;
-		}
-		else {
-			monthDigit2=monthDigit2-1;
-		}
-		Calendar calendar=Calendar.getInstance();
-		char [] actualYear=new String(calendar.get(Calendar.YEAR)+"").toCharArray();
-		byte century=Byte.parseByte(actualYear[0]+""+actualYear[1]);
-		String year="";
-		if(actualYear[2]<ciArray[0]||(actualYear[2]==ciArray[0]&&actualYear[3]<ciArray[1])) 
-			year=(century-1)+""+ciArray[0]+""+ciArray[1];
-		else 
-			year=century+""+ciArray[0]+""+ciArray[1];
-		calendar.set(Integer.parseInt(year), Integer.parseInt(monthDigit1+""+monthDigit2), Integer.parseInt(ciArray[4]+""+ciArray[5]));
-		return calendar;
+	public LocalDate getBirthDate(){
+		String yearSubstring = value.substring(0, 2);
+		String century = String.valueOf(LocalDate.now().getYear() - Integer.parseInt(yearSubstring)).substring(0, 2);
+		int year = Integer.parseInt(century + yearSubstring);
+		return LocalDate.of(year, Integer.parseInt(value.substring(2, 4)), Integer.parseInt(value.substring(4, 6)));
 	}
 	/**Returns the age corresponding to the CI number.
 	 * @return Returns an integer value representing the age corresponding to the CI number. It will return '-1' if the CI number is not valid.*/
 	public int getAge(){
-		int age=0;
-		Calendar now=Calendar.getInstance();
-		Calendar birth=getBirthDate();
-		boolean ageUp=false;
-		age=now.get(Calendar.YEAR)-birth.get(Calendar.YEAR);
-		if(now.get(Calendar.MONTH)<birth.get(Calendar.MONTH))
-			ageUp=true;
-		else if(now.get(Calendar.MONTH)==birth.get(Calendar.MONTH)&&now.get(Calendar.DAY_OF_MONTH)<birth.get(Calendar.DAY_OF_MONTH))
-			ageUp=true;
-		if(ageUp)
-			age--;
-		return age;
+		return Period.between(getBirthDate(), LocalDate.now()).getYears();
 	}
 	/**Return the sex corresponding to the CI number
 	 * @return Return 'true' if the sex is male and 'false' if the sex is female.*/
 	public boolean getSex(){
-		if(ciArray[ciArray.length-2]%2==0)
-			return true;
-		else
-			return false;
+		return (value.charAt(9) - 48) % 2 == 0;
 	}
 	/**Determines if the given CI number is correct.
 	*  @param value the CI number
@@ -108,19 +66,16 @@ public class CI {
 			catch(Exception e){
 				return false;
 			}
-			String year="";
-			Calendar now=Calendar.getInstance();
-			char [] actualYear=new String(now.get(Calendar.YEAR)+"").toCharArray();
-			byte century=Byte.parseByte(actualYear[0]+""+actualYear[1]);
-			char[] ciArray = value.toCharArray();
-			if(actualYear[2]<ciArray[0]||(actualYear[2]==ciArray[0]&&actualYear[3]<ciArray[1])) 
-				year=(century-1)+""+ciArray[0]+""+ciArray[1];
-			else 
-				year=century+""+ciArray[0]+""+ciArray[1];
-			if(!DateUtils.validateDate(ciArray[4]+""+ciArray[5]+"/"+ciArray[2]+""+ciArray[3]+"/"+year)) {
+			try {
+				String yearSubstring = value.substring(0, 2);
+				String century = String.valueOf(LocalDate.now().getYear() - Integer.parseInt(yearSubstring)).substring(0, 2);
+				int year = Integer.parseInt(century + yearSubstring);
+				LocalDate.of(year, Integer.parseInt(value.substring(2, 4)), Integer.parseInt(value.substring(4, 6)));
+				return true;
+			}
+			catch(Exception e) {
 				return false;
 			}
-			return true;
 		}
 		else{
 			return false;
@@ -134,15 +89,10 @@ public class CI {
 			catch(Exception e){
 				throw new InvalidCharactersException();
 			}
-			String year="";
-			Calendar now=Calendar.getInstance();
-			char [] actualYear=new String(now.get(Calendar.YEAR)+"").toCharArray();
-			byte century=Byte.parseByte(actualYear[0]+""+actualYear[1]);
-			if(actualYear[2]<ciArray[0]||(actualYear[2]==ciArray[0]&&actualYear[3]<ciArray[1])) 
-				year=(century-1)+""+ciArray[0]+""+ciArray[1];
-			else 
-				year=century+""+ciArray[0]+""+ciArray[1];
-			if(!DateUtils.validateDate(ciArray[4]+""+ciArray[5]+"/"+ciArray[2]+""+ciArray[3]+"/"+year)) {
+			try {
+				getBirthDate();
+			}
+			catch(Exception e) {
 				throw new InvalidDateException();
 			}
 		}
@@ -153,36 +103,20 @@ public class CI {
 	/**Determines if the CI number is equal to the specified CI number.
 	 * @param ci The CI object to be compared.
 	 * @return Returns 'true' if they are equals and 'false' if they are not. It also returns 'false' if the CI number isn't correct.*/
-	public boolean equals(CI ci){
-		if(((CI) ci).getValue().equals(this.value)){
-			return true;
-		}
-		else{
-			return false;
-		}
+	public boolean equals(Object ci){
+		return (ci instanceof CI id) && equals(id.getValue());
 	}
 	/**Determines if the CI number is equal to the specified String.
 	 * @param ci The String object to be compared.
 	 * @return Returns 'true' if they are equals and 'false' if they are not. It also returns 'false' if the CI number isn't correct.*/
 	public boolean equals(String ci){
-		if(ci.equals(this.value)){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
-	/**Determines if the birth date of the CI number is near, a week or less, to the actual date.
-	 * @return Returns 'true' if the birth date is 7 days or less near from the actual date and 'false' if it is not. It also returns 'false' if the CI number isn't correct.*/
-	public boolean isNearBirthDay(){
-		
-		return false;
+		return ci.equals(value);
 	}
 	/**Overrides the toString() method from Object superclass.
 	 * @return Returns the CI number(The same returns of the getValue() method)*/
 	@Override
 	public String toString(){
-		return this.value;
+		return value;
 	}
 	
 	public class WrongLengthException extends Exception{
