@@ -14,6 +14,7 @@ module jcc.api{
 	exports jcc.api.database.mysql;
 	exports jcc.api.database.sqlite;
 	exports jcc.api.database.sqloader;
+	exports jcc.api.i18n;
 	exports jcc.api.interfaces;
 	exports jcc.api.javafx.animation;
 	exports jcc.api.javafx.controls;
